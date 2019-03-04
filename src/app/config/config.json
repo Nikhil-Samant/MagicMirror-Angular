@@ -1,0 +1,12 @@
+{
+  "widgets":[
+    {
+      "widget": "clock",
+      "position": "top_left",
+      "config": {
+        "displayType": "digital",
+        "timeFormat": 24
+      }
+    }
+]
+}

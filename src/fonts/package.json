@@ -1,0 +1,7 @@
+{
+  "name": "pidashboard-fonts",
+  "description": "Package for fonts use by Pi Dashboard.",
+  "dependencies": {
+    "roboto-fontface": "^0.10.0"
+  }
+}
