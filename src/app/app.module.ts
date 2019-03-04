@@ -1,12 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClockComponent } from './widget/clock/clock.component';
 import { ConfigService } from './service/configuration/config.service';
 import { HttpClientModule } from '@angular/common/http';
-import { MapperService } from './service/mapper/mapper.service';
+import { StorageServiceModule} from 'angular-webstorage-service';
 
 @NgModule({
   declarations: [
@@ -16,11 +15,11 @@ import { MapperService } from './service/mapper/mapper.service';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StorageServiceModule
   ],
   providers: [
-    ConfigService,
-    MapperService
+    ConfigService
   ],
   bootstrap: [AppComponent]
 })

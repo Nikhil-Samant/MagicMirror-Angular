@@ -5,7 +5,7 @@
       "position": "top_left",
       "config": {
         "displayType": "digital",
-        "timeFormat": 24
+        "timeFormat": 12
       }
     }
 ]

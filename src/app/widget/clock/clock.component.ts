@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ConfigService } from 'src/app/service/configuration/config.service';
 import * as moment from 'moment';
-import { Widget, Configuration, WidgetConfig } from 'src/app/global/config.global';
-import { MapperService } from 'src/app/service/mapper/mapper.service';
+import { Widget } from 'src/app/global/config.global';
 
 @Component({
   selector: 'app-clock',
@@ -17,9 +16,9 @@ export class ClockComponent implements OnInit {
   public seconds: string;
   public period: string;
   public week: number;
-  private widgetProperties: Widget = new Widget();
+  private widget: Widget = new Widget();
 
-  private defaults: WidgetConfig =  {
+  private defaults: any =  {
     displayType: 'digital',
     timeFormat: 12,
     displaySeconds: true,
@@ -31,17 +30,13 @@ export class ClockComponent implements OnInit {
     dateFormat: 'dddd, LL'
   };
 
-  constructor(private configService: ConfigService, private mapperService: MapperService) {
+  constructor(private configService: ConfigService) {
   }
 
   ngOnInit() {
-    this.widgetProperties.config = this.defaults;
-    const configObservable = this.configService.getConf();
-    configObservable.subscribe((conf: Configuration) => {
-      //this.widgetProperties.config = conf.widgets.find((c: { widget: string; }) => c.widget === 'clock').config;
-      //let test = this.mapperService.mapConfig(this.defaults,this.widgetProperties.config);
-      //console.log(test);
-    });
+    const conf = this.configService.getConf();
+    this.widget = conf.widgets.find((c: { widget: string; }) => c.widget === 'clock');
+    this.widget.config = Object.assign(this.defaults, this.widget.config);
     console.log('Starting Clock Widget');
     this.loopTime();
     setInterval(() => {
@@ -51,19 +46,19 @@ export class ClockComponent implements OnInit {
   loopTime() {
     const now = moment();
     let hourSymbol = 'HH';
-    if (this.widgetProperties.config.timeFormat !== 24) {
+    if (this.widget.config.timeFormat !== 24) {
       hourSymbol = 'hh';
     }
     this.timeString = now.format(hourSymbol + ':mm');
 
-    if (this.widgetProperties.config.showDate){
-      this.dateString = now.format(this.widgetProperties.config.dateFormat);
+    if (this.widget.config.showDate){
+      this.dateString = now.format(this.widget.config.dateFormat);
     }
-    if (this.widgetProperties.config.showWeek) {
+    if (this.widget.config.showWeek) {
       this.week =  now.week();
     }
     this.seconds = now.format('ss');
-    if (this.widgetProperties.config.showPeriodUpper) {
+    if (this.widget.config.showPeriodUpper) {
       this.period = now.format('A');
     } else {
       this.period = now.format('a');
