@@ -13,9 +13,10 @@ export class ConfigService {
   constructor(@Inject(SESSION_STORAGE) private storage: WebStorageService, public http: HttpClient) {
   }
 
-  async getConfigurationFromJSON() {
+  public async getConfigurationFromJSON(): Promise<Configuration> {
     this.appConfig = await this.http.get<Configuration>(this.configUrl).toPromise();
     this.saveConfigInLocal(this.CONFIG_KEY, this.appConfig);
+    return this.appConfig;
   }
 
   public getConf(): Configuration {

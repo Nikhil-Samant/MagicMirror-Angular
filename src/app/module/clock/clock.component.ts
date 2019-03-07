@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ConfigService } from 'src/app/service/configuration/config.service';
+import { ConfigService } from 'src/app/service/configService/config.service';
 import * as moment from 'moment';
-import { Widget } from 'src/app/global/config.global';
+import { Module } from 'src/app/global/config.global';
 
 @Component({
   selector: 'app-clock',
@@ -16,7 +16,7 @@ export class ClockComponent implements OnInit {
   public seconds: string;
   public period: string;
   public week: number;
-  private widget: Widget = new Widget();
+  private module: Module = new Module();
 
   private defaults: any =  {
     displayType: 'digital',
@@ -35,8 +35,8 @@ export class ClockComponent implements OnInit {
 
   ngOnInit() {
     const conf = this.configService.getConf();
-    this.widget = conf.widgets.find((c: { widget: string; }) => c.widget === 'clock');
-    this.widget.config = Object.assign(this.defaults, this.widget.config);
+    this.module = conf.modules.find((c: { module: string; }) => c.module === 'clock');
+    this.module.config = Object.assign(this.defaults, this.module.config);
     console.log('Starting Clock Widget');
     this.loopTime();
     setInterval(() => {
@@ -46,19 +46,19 @@ export class ClockComponent implements OnInit {
   loopTime() {
     const now = moment();
     let hourSymbol = 'HH';
-    if (this.widget.config.timeFormat !== 24) {
+    if (this.module.config.timeFormat !== 24) {
       hourSymbol = 'hh';
     }
     this.timeString = now.format(hourSymbol + ':mm');
 
-    if (this.widget.config.showDate){
-      this.dateString = now.format(this.widget.config.dateFormat);
+    if (this.module.config.showDate){
+      this.dateString = now.format(this.module.config.dateFormat);
     }
-    if (this.widget.config.showWeek) {
+    if (this.module.config.showWeek) {
       this.week =  now.week();
     }
     this.seconds = now.format('ss');
-    if (this.widget.config.showPeriodUpper) {
+    if (this.module.config.showPeriodUpper) {
       this.period = now.format('A');
     } else {
       this.period = now.format('a');

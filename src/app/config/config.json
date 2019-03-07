@@ -1,8 +1,9 @@
 {
-  "widgets":[
+  "modules":[
     {
-      "widget": "clock",
-      "position": "top_left",
+      "module": "clock",
+      "component": "ClockComponent",
+      "position": "middle_center",
       "config": {
         "displayType": "digital",
         "timeFormat": 12

@@ -1,12 +1,13 @@
-export class Widget {
-  widget: string;
+export class Module {
+  module: string;
   position: string;
+  component: string;
   config: any;
 }
 
 export class Configuration {
-  widgets: Widget[];
+  modules: Module[];
   constructor() {
-    this.widgets = Array<Widget>();
+    this.modules = Array<Module>();
   }
 }
