@@ -3,10 +3,11 @@
     {
       "module": "clock",
       "component": "ClockComponent",
-      "position": "middle_center",
+      "position": "top_left",
       "config": {
         "displayType": "digital",
-        "timeFormat": 12
+        "timeFormat": 12,
+        "showWeek": false
       }
     }
 ]

@@ -16,7 +16,7 @@ export class ClockComponent implements OnInit {
   public seconds: string;
   public period: string;
   public week: number;
-  private module: Module = new Module();
+  public module: Module = new Module();
 
   private defaults: any =  {
     displayType: 'digital',
@@ -24,9 +24,8 @@ export class ClockComponent implements OnInit {
     displaySeconds: true,
     showPeriod: true,
     showPeriodUpper: true,
-    clockBold: false,
     showDate: true,
-    showWeek: false,
+    showWeek: true,
     dateFormat: 'dddd, LL'
   };
 
@@ -63,11 +62,5 @@ export class ClockComponent implements OnInit {
     } else {
       this.period = now.format('a');
     }
-    // if (this.defaults.displaySeconds) {
-    //   timeWrapper.appendChild(secondsWrapper);
-    // }
-    // if (this.config.showPeriod && this.config.timeFormat !== 24) {
-    //   timeWrapper.appendChild(periodWrapper);
-    // }
   }
 }

@@ -1,7 +1,7 @@
 <div class="time bright large light">
   <span>{{timeString}}</span>
-  <sup class="dimmed">{{seconds}}</sup>
-  <span class="medium">{{period}}</span>
+  <sup class="dimmed">{{module.config.displaySeconds ? seconds : ""}}</sup>
+  <span class="medium">{{(module.config.showPeriod && module.config.timeFormat !== 24) ? period : ""}}</span>
 </div>
-<div class="date normal medium">{{dateString}}</div>
-<div class="week dimmed medium">{{week}}</div>
+<div class="date normal medium">{{module.config.showDate ? dateString : ""}}</div>
+<div class="week dimmed medium">{{module.config.showWeek ? week : ""}}</div>
