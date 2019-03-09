@@ -9,6 +9,11 @@
         "timeFormat": 12,
         "showWeek": false
       }
+    },
+    {
+      "module": "calender",
+      "component": "CalenderComponent",
+      "position": "top_right"
     }
 ]
 }
