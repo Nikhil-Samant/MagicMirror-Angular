@@ -24,6 +24,7 @@
     "angular-webstorage-service": "^1.0.2",
     "core-js": "^2.5.4",
     "electron": "^4.0.6",
+    "font-awesome": "^4.7.0",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.23",

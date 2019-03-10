@@ -1,11 +1,5 @@
-@dayBase: 30px;
-@cloud:'#ccc';
+@dayBase: 40px;
 @base:5px;
-@concrete:'#fff';
-@seafoam:'blue';
-@white:'#fff';
-@teal:'black';
-@light-blue-grey:'#888';
 
 .calendar {
   display: block;
@@ -16,8 +10,11 @@
     box-sizing: border-box;
   }
 
-  .calendar-navs {
-    background-color: @cloud;
+  .calendar-header{
+    padding-left: 10px;
+    .left-pad{
+      padding-left: 10px;
+    }
   }
 
   .month-nav {
@@ -32,14 +29,12 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    font-family: 'Montserrat';
   }
 
   .month-grid {
     .day-names {
       display: flex;
       flex-direction: row;
-      background: @concrete;
       border-bottom-right-radius: 3px;
       border-bottom-left-radius: 3px;
     }
@@ -65,53 +60,6 @@
     .week-date {
       height: @dayBase;
       position: relative;
-
-      .date-text {
-        z-index: 10;
-        font-size: 10px;
-        font-family: 'Montserrat', sans-serif;
-      }
-
-      &::after {
-        content: '';
-        height: @dayBase * 0.9;
-        width: @dayBase * 0.9;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        border-radius: 50%;
-        transition: background-color 150ms linear, color 150ms linear;
-        z-index: 1;
-      }
-
-      &.enabled {
-        cursor: pointer;
-        &:hover {
-          &:after {
-            background-color: @seafoam;
-          }
-        }
-      }
-      &.selected {
-        color: @white;
-        &:after {
-          background-color: @teal;
-        }
-        &:hover {
-          &:after {
-            background-color: @teal;
-          }
-        }
-      }
-
-      &.disabled {
-        color: @light-blue-grey;
-      }
-    }
-
-    .today {
-      font-weight: bold;
     }
   }
 }

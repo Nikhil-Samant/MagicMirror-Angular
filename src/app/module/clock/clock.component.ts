@@ -36,7 +36,6 @@ export class ClockComponent implements OnInit {
     const conf = this.configService.getConf();
     this.module = conf.modules.find((c: { module: string; }) => c.module === 'clock');
     this.module.config = Object.assign(this.defaults, this.module.config);
-    console.log('Starting Clock Widget');
     this.loopTime();
     setInterval(() => {
        this.loopTime();

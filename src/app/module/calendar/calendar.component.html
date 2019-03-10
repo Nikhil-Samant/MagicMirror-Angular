@@ -1,33 +1,41 @@
 <div class="calendar">
-  <div class="calendar-navs">
-    <div class="month-nav">
-      <button (click)="prevMonth()">&lt;</button>
-      <span class="p4">{{ currentDate.format('MMMM') }}</span>
-      <button (click)="nextMonth()">&gt;</button>
+  <header *ngIf="module.config.showHeader" class="brightBg calendar-header">
+    <div class="align-left">
+      <span class="xsmall">{{ today.format('YYYY') }}</span>
     </div>
-    <div class="year-nav">
+    <div class="align-left">
+        <i class="fa fa-calendar small" aria-hidden="true"></i><span class="small dimmed left-pad">{{ today.format(module.config.dateFormat) }}</span>
+      </div>
+  </header>
+  <div class="calendar-navs">
+    <div *ngIf="module.config.showYear" class="year-nav">
       <button (click)="prevYear()">&lt;</button>
-      <span>{{ currentDate.format('YYYY') }}</span>
+      <span class="light normal small"> {{ currentDate.format('YYYY') }}</span>
       <button (click)="nextYear()">&gt;</button>
+    </div>
+    <div *ngIf="module.config.showMonth" class="month-nav">
+      <button (click)="prevMonth()">&lt;</button>
+      <span class="normal light small">{{ currentDate.format('MMMM') }} {{ currentDate.format('YYYY') }}</span>
+      <button (click)="nextMonth()">&gt;</button>
     </div>
   </div>
   <div class="month-grid">
     <div class="day-names">
-      <div *ngFor="let name of dayNames" class="day-name p9">
+      <div *ngFor="let name of dayNames" class="day-name small bright">
         {{ name }}
       </div>
     </div>
     <div class="weeks">
       <div *ngFor="let week of weeks" class="week">
         <ng-container *ngFor="let day of week">
-          <div class="week-date disabled" *ngIf="!isSelectedMonth(day.mDate)">
-            <span class="date-text">{{ day.mDate.date() }}</span>
+          <div class="week-date dimmed" *ngIf="!isSelectedMonth(day.mDate)">
+            <span class="small">{{ day.mDate.date() }}</span>
           </div>
           <div class="week-date enabled"
                *ngIf="isSelectedMonth(day.mDate)"
                (click)="selectDate(day)"
-               [ngClass]="{ today: day.today, selected: day.selected }">
-            <span class="date-text">{{ day.mDate.date() }}</span>
+               [ngClass]="{ 'bright bold': day.today, selected: day.selected }">
+            <span class="small">{{ day.mDate.date() }}</span>
           </div>
         </ng-container>
       </div>

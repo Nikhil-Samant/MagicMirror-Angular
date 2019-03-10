@@ -29,7 +29,8 @@
             ],
             "styles": [
               "src/styles.less",
-              "src/fonts/roboto.less"
+              "src/fonts/roboto.less",
+              "node_modules/font-awesome/less/font-awesome.less"
             ],
             "scripts": [],
             "es5BrowserSupport": true

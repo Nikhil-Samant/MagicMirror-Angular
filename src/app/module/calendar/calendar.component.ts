@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import * as moment from 'moment';
 import * as _ from 'lodash';
+import { Module } from 'src/app/global/config.global';
+import { ConfigService } from 'src/app/service/configService/config.service';
 
 export interface CalendarDate {
   mDate: moment.Moment;
@@ -14,7 +16,15 @@ export interface CalendarDate {
   styleUrls: ['./calendar.component.less']
 })
 export class CalendarComponent implements OnInit, OnChanges {
+  public module: Module = new Module();
+  private defaults: any =  {
+    showYear: false,
+    showMonth: true,
+    showHeader: true,
+    dateFormat: 'ddd, MMM DD'
+  };
 
+  today = moment();
   currentDate = moment();
   dayNames = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   weeks: CalendarDate[][] = [];
@@ -23,9 +33,12 @@ export class CalendarComponent implements OnInit, OnChanges {
   @Input() selectedDates: CalendarDate[] = [];
   @Output() outSelectDate = new EventEmitter<CalendarDate>();
 
-  constructor() {}
+  constructor(private configService: ConfigService) {}
 
   ngOnInit(): void {
+    const conf = this.configService.getConf();
+    this.module = conf.modules.find((c: { module: string; }) => c.module === 'calender');
+    this.module.config = Object.assign(this.defaults, this.module.config);
     this.generateCalendar();
   }
 
