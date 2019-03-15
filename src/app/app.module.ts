@@ -9,12 +9,14 @@ import { ModuleService } from './service/moduleService/module.service';
 import { ClockComponent } from './module/clock/clock.component';
 import { CalendarComponent } from './module/calendar/calendar.component';
 import { calendarFormat } from 'moment';
+import { WeatherComponent } from './module/weather/weather.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClockComponent,
-    CalendarComponent
+    CalendarComponent,
+    WeatherComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +29,10 @@ import { calendarFormat } from 'moment';
     ModuleService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ClockComponent, CalendarComponent]
+  entryComponents: [
+    ClockComponent,
+    CalendarComponent,
+    WeatherComponent
+  ]
 })
 export class AppModule { }

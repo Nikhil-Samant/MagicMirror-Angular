@@ -14,6 +14,14 @@
       "module": "calender",
       "component": "CalenderComponent",
       "position": "top_right"
+    },
+    {
+      "module": "weather",
+      "component": "WeatherComponent",
+      "position": "top_center",
+      "config": {
+        "onlyTemp": false
+      }
     }
 ]
 }
