@@ -5,8 +5,8 @@ export class WeatherObject {
   date: Date;
   windSpeed: number;
   windDirection: number;
-  sunrise: Date;
-  sunset: Date;
+  sunrise: moment.Moment;
+  sunset: moment.Moment;
   temperature: number;
   minTemperature: number;
   maxTemperature: number;
