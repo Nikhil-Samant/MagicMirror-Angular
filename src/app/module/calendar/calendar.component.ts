@@ -37,8 +37,7 @@ export class CalendarComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     const conf = this.configService.getConf();
-    this.module = conf.modules.find((c: { module: string; }) => c.module === 'calender');
-    this.module.config = Object.assign(this.defaults, this.module.config);
+    this.module = this.configService.mapDefaultConfigs('calender', this.defaults, conf);
     this.generateCalendar();
   }
 

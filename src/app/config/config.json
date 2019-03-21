@@ -18,10 +18,12 @@
     {
       "module": "weather",
       "component": "WeatherComponent",
-      "position": "top_center",
-      "config": {
-        "onlyTemp": false
-      }
+      "position": "top_center"
+    },
+    {
+      "module": "news",
+      "component": "NewsComponent",
+      "position": "bottom_center"
     }
-]
+  ]
 }

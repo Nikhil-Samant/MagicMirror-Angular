@@ -47,9 +47,10 @@ export class WeatherService extends WeatherObject {
 
   public async fetchWeather(config: any) {
     const url = this.getUrl(config);
-    const weather = await this.http.get(url).toPromise();
-    this.weatherInfo = this.generateWeatherObjectFromCurrentWeather(weather);
-    this.saveWeatherInfoInLocal(this.WEATHER_KEY, this.weatherInfo);
+    await this.http.get(url).subscribe(weather => {
+      this.weatherInfo = this.generateWeatherObjectFromCurrentWeather(weather);
+      this.saveWeatherInfoInLocal(this.WEATHER_KEY, this.weatherInfo);
+    });
   }
 
   public getWeather() {
@@ -70,7 +71,6 @@ export class WeatherService extends WeatherObject {
 
   private saveWeatherInfoInLocal(key, val): void {
     this.storage.set(key, val);
-    this.weatherInfo = this.storage.get(key);
   }
 
   private getWeatherInfoFromLocal(key): WeatherObject {
@@ -192,5 +192,5 @@ export class WeatherService extends WeatherObject {
     };
 
     return weatherTypes.hasOwnProperty(weatherType) ? weatherTypes[weatherType] : null;
-	}
+  }
 }

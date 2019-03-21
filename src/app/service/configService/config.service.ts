@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Configuration } from 'src/app/global/config.global';
+import { Configuration, Module } from 'src/app/global/config.global';
 import {SESSION_STORAGE, WebStorageService} from 'angular-webstorage-service';
 
 @Injectable({
@@ -21,6 +21,12 @@ export class ConfigService {
 
   public getConf(): Configuration {
     return this.getConfigFromLocal(this.CONFIG_KEY);
+  }
+
+  public mapDefaultConfigs(moduleName: string, defaults: any, config: Configuration): Module {
+    const module = config.modules.find((c: { module: string; }) => c.module === moduleName);
+    module.config = Object.assign(defaults, module.config);
+    return module;
   }
 
   private saveConfigInLocal(key, val): void {

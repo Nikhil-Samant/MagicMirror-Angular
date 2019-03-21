@@ -1,13 +1,13 @@
-<header class="bright medium align-right">
-  {{module.config.cityName}}
-</header>
 <div><ng-container *ngIf="loaded; else elseTemplate">
+    <header class="bright medium align-right">
+        {{module.config.cityName}}
+    </header>
     <ng-container *ngIf="!module.config.onlyTemp">
         <div class="normal medium">
             <span class="wi wi-strong-wind dimmed"></span>
             <span>
               <ng-container *ngIf="module.config.useBeaufort; else windBlock" >
-                {{service.beaufortWindSpeed()}}
+                {{weatherService.beaufortWindSpeed()}}
               </ng-container>
               <ng-template #windBlock>
                   {{current.windSpeed}}
@@ -18,7 +18,7 @@
                         <i class="fa fa-long-arrow-up" style="transform:rotate('{{current.windDirection}}deg');"></i>
                     </ng-container>
                     <ng-template #wdirectionBlock>
-                        {{service.cardinalWindDirection()}}
+                        {{weatherService.cardinalWindDirection()}}
                     </ng-template>
                       &nbsp;
                   </sup>
@@ -27,9 +27,9 @@
             <ng-container *ngIf="module.config.showHumidity && current.humidity">
                 <span>{{ current.humidity }}</span><sup>&nbsp;<i class="wi wi-humidity humidityIcon"></i></sup>
             </ng-container>
-            <span class="wi dimmed wi-{{service.nextSunAction()}}"></span>
+            <span class="wi dimmed wi-{{weatherService.nextSunAction()}}"></span>
             <span>
-                <ng-container *ngIf="service.nextSunAction() == 'sunset'; else sunriseBlock">
+                <ng-container *ngIf="weatherService.nextSunAction() == 'sunset'; else sunriseBlock">
                     {{current.sunset | date:'shortTime' }}
                 </ng-container>
                 <ng-template #sunriseBlock>
@@ -38,23 +38,23 @@
             </span>
         </div>
       </ng-container>
-</ng-container>
-<div class="large light">
-    <span class="wi weathericon wi-{{current.weatherType}}"></span>
-    <span class="bright">
-        {{current.temperature}}
-    </span>
-</div>
-<ng-container *ngIf="module.config.showFeelsLike && !module.config.onlyTemp">
-    <div class="normal medium">
-        <span class="dimmed">
-            {{ "FEELS"}} {{ service.feelsLike()}}
-        </span>
-    </div>
+  <div class="large light">
+      <span class="wi weathericon wi-{{current.weatherType}}"></span>
+      <span class="bright">
+          {{current.temperature}}
+      </span>
+  </div>
+  <ng-container *ngIf="module.config.showFeelsLike && !module.config.onlyTemp">
+      <div class="normal medium">
+          <span class="dimmed">
+              {{ "FEELS"}} {{ weatherService.feelsLike()}}
+          </span>
+      </div>
+  </ng-container>
 </ng-container>
 <ng-template #elseTemplate>
     <div class="dimmed light small">
-        {{"LOADING"}}
+        {{"LOADING WEATHER"}}
     </div>
 </ng-template>
 </div>

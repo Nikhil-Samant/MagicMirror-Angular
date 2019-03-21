@@ -1,0 +1,11 @@
+<div>
+  <ng-container *ngIf="loaded; else elseTemplate">
+    <div class="light small dimmed">{{newsItem.source.name}}</div>
+    <div class="bright medium light no-wrap">{{newsItem.title}}</div>
+  </ng-container>
+  <ng-template #elseTemplate>
+      <div class="dimmed light small">
+          {{"LOADING NEWS"}}
+      </div>
+  </ng-template>
+</div>

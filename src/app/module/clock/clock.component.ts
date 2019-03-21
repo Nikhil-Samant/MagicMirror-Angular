@@ -34,8 +34,7 @@ export class ClockComponent implements OnInit {
 
   ngOnInit() {
     const conf = this.configService.getConf();
-    this.module = conf.modules.find((c: { module: string; }) => c.module === 'clock');
-    this.module.config = Object.assign(this.defaults, this.module.config);
+    this.module = this.configService.mapDefaultConfigs('clock', this.defaults, conf);
     this.loopTime();
     setInterval(() => {
        this.loopTime();
