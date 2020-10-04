@@ -28,4 +28,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Credits
 
-This idea and code is taken from upon https://github.com/MichMich/MagicMirror . This is an awesome project
+This idea and code is taken from https://github.com/MichMich/MagicMirror. This is an awesome project. Credit goes to the Author.
