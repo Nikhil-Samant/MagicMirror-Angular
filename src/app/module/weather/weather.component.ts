@@ -41,7 +41,7 @@ export class WeatherComponent implements OnInit {
     apiBase: 'http://api.openweathermap.org/data/',
     weatherEndpoint: '/weather',
     forecastEndpoint: '/forecast',
-    apiKey: '200c42689d5de66cd3fee0fd8f9e4347',
+    apiKey: 'Your API Key',
     appendLocationNameToHeader: true,
     calendarClass: 'calendar',
     tableClass: 'small',
