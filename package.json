@@ -23,7 +23,7 @@
     "@angular/router": "~7.2.0",
     "angular-webstorage-service": "^1.0.2",
     "core-js": "^2.5.4",
-    "electron": "^11.5.0",
+    "electron": "^13.6.6",
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.21",
     "moment": "^2.24.0",
